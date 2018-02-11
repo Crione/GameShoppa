@@ -20,9 +20,20 @@ namespace GameShoppa.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            return View(await _context.Game.Include(g => g.Genre).ToListAsync());
+            if (id == null)
+            {
+                return View(await _context.Game.Include(g => g.Genre).ToListAsync());
+            }
+
+            var game = await _context.Game
+                .Include(g => g.Genre)
+                .Where(m => m.Genre.ID == id)
+                .ToListAsync();
+                
+
+            return View(game);
         }
 
         public async Task<IActionResult> Game(int? id)
