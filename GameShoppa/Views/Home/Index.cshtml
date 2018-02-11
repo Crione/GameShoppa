@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <h1 class="my-4">Categories</h1>
+            <h2 class="my-4">Genres</h2>
             <div class="list-group">
 
                 @foreach(var item in Model)
@@ -29,7 +29,7 @@
                             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">@item.Title</a>
+                                    <a asp-action="Game" asp-route-id="@item.ID">@item.Title</a>
                                 </h4>
                                 <h5>$@item.Price</h5>
                                 <p class="card-text">@item.Description</p>

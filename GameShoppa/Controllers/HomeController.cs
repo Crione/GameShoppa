@@ -25,18 +25,22 @@ namespace GameShoppa.Controllers
             return View(await _context.Game.Include(g => g.Genre).ToListAsync());
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> Game(int? id)
         {
-            ViewData["Message"] = "Your application description page.";
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            return View();
-        }
+            var game = await _context.Game
+                .Include(g => g.Genre)
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (game == null)
+            {
+                return NotFound();
+            }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View(game);
         }
 
         public IActionResult Error()

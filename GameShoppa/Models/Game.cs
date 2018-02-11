@@ -19,7 +19,7 @@ namespace GameShoppa.Models
         [Display(Name = "Image")]
         public string Img { get; set; }
         [Required]
-        [Range(5, 200)]
+        [Range(4.99, 200.00)]
         public double Price { get; set; }
 
         [Required]
